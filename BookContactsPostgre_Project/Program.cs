@@ -127,7 +127,6 @@ class Program
                                     Console.WriteLine("No Contact found");
                                 }
                             break;
-                            
 
                         case 0:
                             turnOff = true;
