@@ -22,10 +22,10 @@ public class ContactRepository
                 while (reader.Read())
                 {
                     Contact contact = new Contact();
-                    contact.id = Convert.ToInt32(reader["id"]);
-                    contact.name = reader["name"].ToString() ?? "";
-                    contact.surname = reader["surname"].ToString() ?? "";
-                    contact.phone_number = reader["phone_number"].ToString()?.Trim() ?? "";
+                    contact.Id = Convert.ToInt32(reader["id"]);
+                    contact.Name = reader["name"].ToString() ?? "";
+                    contact.Surname = reader["surname"].ToString() ?? "";
+                    contact.Phone_Number = reader["phone_number"].ToString()?.Trim() ?? "";
                     contacts.Add(contact);
                 }
             }
@@ -33,15 +33,15 @@ public class ContactRepository
         return(contacts);
     }
 
-     public bool AddContact(string name, string surname, string phone_number)
+     public bool AddContact(string Name, string Surname, string phone_Number)
     {
         var sql = "INSERT INTO Contacts (name, surname, phone_number) Values(@name, @surname, @phone_number)";
 
         using (var insert = new NpgsqlCommand(sql, _conn))
         {
-            insert.Parameters.AddWithValue("name", name);
-            insert.Parameters.AddWithValue("surname", surname);
-            insert.Parameters.AddWithValue("phone_number", phone_number);
+            insert.Parameters.AddWithValue("name", Name);
+            insert.Parameters.AddWithValue("surname", Surname);
+            insert.Parameters.AddWithValue("phone_number", phone_Number);
 
             var QueryCheck = insert.ExecuteNonQuery();
             return QueryCheck != 0;

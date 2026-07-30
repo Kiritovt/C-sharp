@@ -1,6 +1,5 @@
-﻿using System;
-using System.ComponentModel.Design;
-using BookContacts;
+﻿using BookContacts;
+using Microsoft.VisualBasic;
 using Npgsql;
 
 class Program
@@ -19,14 +18,14 @@ class Program
                 ContactRepository repository = new ContactRepository(conn);
                 contacts = repository.LoadContacts();
                 Console.WriteLine("Connected successfully.");
-                int id;
-                string name;
-                string surname;
-                string phone_number;
+                int Id;
+                string Name;
+                string Surname;
+                string phone_Number;
                 while (!turnOff)
                 {
 
-                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n0. Exit");
+                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n5. Search contact by surname\n0. Exit");
                     bool Check;
                     switch (choice)
                     {
@@ -34,13 +33,13 @@ class Program
                             while (true)
                             {
                                 Console.WriteLine("Enter the contact name:");
-                                name = Console.ReadLine() ?? "";
+                                Name = Console.ReadLine() ?? "";
                                 Console.WriteLine("Enter the contact surname:");
-                                surname = Console.ReadLine() ?? "";
+                                Surname = Console.ReadLine() ?? "";
                                 Console.WriteLine("Enter the contact phone number:");
-                                phone_number = Console.ReadLine() ?? "";
+                                phone_Number = Console.ReadLine() ?? "";
 
-                                if (string.IsNullOrWhiteSpace(name) && string.IsNullOrWhiteSpace(surname) && string.IsNullOrWhiteSpace(phone_number))
+                                if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Surname) && string.IsNullOrWhiteSpace(phone_Number))
                                 {
                                     Console.WriteLine("Invalid contact. Please retry");
                                 }
@@ -48,7 +47,7 @@ class Program
 
 
                             }
-                            Check= repository.AddContact(name, surname, phone_number);
+                            Check= repository.AddContact(Name, Surname, phone_Number);
                             if (Check)
                             {
                                 Console.WriteLine("Contact successfully added.");
@@ -64,7 +63,7 @@ class Program
                             contacts = repository.LoadContacts();
                                     foreach (Contact c in contacts)
                                     {
-                                        Console.WriteLine($"{c.id}. {c.name} {c.surname} {c.phone_number}");
+                                        Console.WriteLine($"{c.Id}. {c.Name} {c.Surname} {c.Phone_Number}");
                                     }
 
                             break;
@@ -72,13 +71,13 @@ class Program
                         case 3:
                             foreach (Contact c in contacts)
                             {
-                                Console.Write($"\n{c.id}. {c.name} {c.surname} - {c.phone_number}");
+                                Console.Write($"\n{c.Id}. {c.Name} {c.Surname} - {c.Phone_Number}");
                             }
 
-                            id = ReadNumber("Enter the contact id:");
+                            Id = ReadNumber("Enter the contact id:");
                             Console.WriteLine("Enter the new contact number:");
                             string newPhoneNumber = Console.ReadLine()??"";
-                            Check = repository.UpdateContact(id, newPhoneNumber);
+                            Check = repository.UpdateContact(Id, newPhoneNumber);
                             if (Check)
                                 {
                                     Console.WriteLine("Number successfully updated.");
@@ -93,11 +92,11 @@ class Program
                         case 4:
                             foreach (Contact c in contacts)
                             {
-                                Console.WriteLine($"{c.id}. {c.name} {c.surname} - {c.phone_number}");
+                                Console.WriteLine($"{c.Id}. {c.Name} {c.Surname} - {c.Phone_Number}");
                             }
-                            id = ReadNumber("Enter the contact number:");
+                            Id = ReadNumber("Enter the contact number:");
 
-                            Check = repository.DeleteContact(id);
+                            Check = repository.DeleteContact(Id);
                                     if (Check)
                             {
                                 Console.WriteLine("Contact successfully deleted.");
@@ -108,6 +107,18 @@ class Program
                                 Console.WriteLine("Operation failed");
                             }
 
+                            break;
+
+                        case 5:
+                            Console.WriteLine("Enter the contact surname:");
+                            string surname = Console.ReadLine()?.ToLower()??"";
+
+                            var result = contacts.Where(c => c.Surname.ToLower() == surname);
+
+                            foreach (Contact contact in result)
+                            {
+                                Console.WriteLine($"{contact.Id} {contact.Name} {contact.Surname} - {contact.Phone_Number}");
+                            }
                             break;
 
                         case 0:

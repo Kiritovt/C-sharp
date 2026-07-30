@@ -2,8 +2,8 @@ namespace BookContacts;
 
 public class Contact
 {
-    public int id { get; set; }
-    public string name { get; set; } = "";
-    public string surname { get; set; } = "";
-    public string phone_number { get; set; } = "";
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public string Surname { get; set; } = "";
+    public string Phone_Number { get; set; } = "";
 }
