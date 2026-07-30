@@ -115,11 +115,19 @@ class Program
 
                             var result = contacts.Where(c => c.Surname.ToLower() == surname);
 
-                            foreach (Contact contact in result)
+                            if (result.Any())
+                            {
+                                foreach (Contact contact in result)
                             {
                                 Console.WriteLine($"{contact.Id} {contact.Name} {contact.Surname} - {contact.Phone_Number}");
+                                }
                             }
+                            else
+                            {
+                                    Console.WriteLine("No Contact found");
+                                }
                             break;
+                            
 
                         case 0:
                             turnOff = true;
@@ -155,4 +163,4 @@ class Program
         }
 
     }
-}
+}   
