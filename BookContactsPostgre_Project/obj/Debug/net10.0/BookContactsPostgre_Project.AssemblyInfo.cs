@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookContactsPostgre_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+820f978502ef706585bdb79635c93ef01912535e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82c03b599f5bdecd6df844d0f547dab94360f860")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookContactsPostgre_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookContactsPostgre_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

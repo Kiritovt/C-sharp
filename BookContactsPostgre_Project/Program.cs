@@ -1,4 +1,5 @@
-﻿using BookContacts;
+﻿using System.Runtime.InteropServices;
+using BookContacts;
 using Microsoft.VisualBasic;
 using Npgsql;
 
@@ -9,9 +10,8 @@ class Program
 
         List<Contact> contacts = new();
         bool turnOff = false;
-        string connString = "Host=localhost;Port=5432;Database=contacts_book;Username=postgres;Password=DemetraFormazione_18;";
-        using (var conn = new NpgsqlConnection(connString))
-        {
+        string connString = "Host=localhost;Port=5432;Database=contacts_book;Username=postgres;Password=MegaLucario99!;";
+        using (var conn = new NpgsqlConnection(connString))        {
             try
             {
                 conn.Open();
@@ -25,7 +25,7 @@ class Program
                 while (!turnOff)
                 {
 
-                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n5. Search contact by surname\n0. Exit");
+                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n5. Search contact by surname\n6. Order By Surname\n7. Search By ID\n8.Show Contacts Name\n9. Search surname and show ordered names\n0. Exit");
                     bool Check;
                     switch (choice)
                     {
@@ -128,6 +128,46 @@ class Program
                                 }
                             break;
 
+                        case 6:
+                            var SurnameOrder = contacts.OrderBy(c => c.Surname).ThenBy(c => c.Name);
+                            foreach (Contact c in SurnameOrder)
+                            {
+                                Console.WriteLine($"{c.Id}. {c.Name} {c.Surname} - {c.Phone_Number}");
+                            }
+                            break;
+
+                        case 7:
+                            var SearchID = ReadNumber("Enter The contact ID");
+                            Contact? foundCont = contacts.FirstOrDefault(c => c.Id == SearchID);
+                            if (foundCont != null)
+                            {
+                                Console.WriteLine($"{foundCont.Name} {foundCont.Surname} - {foundCont.Phone_Number}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("ID not found");
+                            }
+                            break;
+
+                        case 8:
+                            var ContactNames = contacts.Select(c => c.Name);
+                            foreach (String c in ContactNames)
+                            {
+                                Console.WriteLine(c);
+                            }
+                            break;
+
+                        case 9:
+                            Console.WriteLine("Enter the surname");
+                            string filter = Console.ReadLine()?.ToLower().Trim() ??"";
+                            var filteredNames = contacts.Where(c => c.Surname.ToLower().Trim() == filter).OrderBy(c => c.Name).Select(c => c.Name);
+                            foreach (String name in filteredNames)
+                            {
+                                Console.WriteLine(name);
+                            }
+
+                            break;
+
                         case 0:
                             turnOff = true;
                             break;
@@ -162,4 +202,6 @@ class Program
         }
 
     }
-}   
+}
+
+

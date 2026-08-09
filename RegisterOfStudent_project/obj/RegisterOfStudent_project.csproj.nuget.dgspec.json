@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\d.celiento\\Desktop\\dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj": {}
+    "D:\\Dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\d.celiento\\Desktop\\dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj": {
+    "D:\\Dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\d.celiento\\Desktop\\dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj",
+        "projectUniqueName": "D:\\Dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj",
         "projectName": "RegisterOfStudent_project",
-        "projectPath": "C:\\Users\\d.celiento\\Desktop\\dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj",
-        "packagesPath": "C:\\Users\\d.celiento\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\d.celiento\\Desktop\\dev\\C#\\C-sharp\\RegisterOfStudent_project\\obj\\",
+        "projectPath": "D:\\Dev\\C#\\C-sharp\\RegisterOfStudent_project\\RegisterOfStudent_project.csproj",
+        "packagesPath": "C:\\Users\\Utente\\.nuget\\packages\\",
+        "outputPath": "D:\\Dev\\C#\\C-sharp\\RegisterOfStudent_project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\d.celiento\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Utente\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
