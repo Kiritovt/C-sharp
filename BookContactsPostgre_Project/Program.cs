@@ -25,7 +25,7 @@ class Program
                 while (!turnOff)
                 {
 
-                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n5. Search contact by surname\n6. Order By Surname\n7. Search By ID\n8.Show Contacts Name\n9. Search surname and show ordered names\n0. Exit");
+                    int choice = ReadNumber("===== Contacts Book =====\n1. Add Contact \n2. Show Contacts \n3. Update Contact info \n4. Delete Contact \n5. Search contact by surname\n6. Order By Surname\n7. Search By ID\n8. Show Contacts Name\n9. Search surname and show ordered names\n10. Search for name or surname\n0. Exit");
                     bool Check;
                     switch (choice)
                     {
@@ -167,6 +167,25 @@ class Program
                             }
 
                             break;
+                        case 10:
+                            Console.WriteLine("Enter the contact name or surname:");
+                            string info = Console.ReadLine()?.ToLower() ?? "";
+                            var filtered = contacts.Where(c => c.Name != null && c.Name.ToLower().Contains(info) || c.Surname != null && c.Surname.ToLower().Contains(info))
+                                .OrderBy(c => c.Surname).ThenBy(c => c.Name);
+
+                            if (filtered.Any())
+                            {
+                                 foreach (Contact c in filtered )
+                            {
+                                Console.WriteLine($"{c.Id} {c.Name} {c.Surname} {c.Phone_Number}");
+                            }
+                            }
+                            else
+                            {
+                                Console.WriteLine($"No contacts found with the name or surname: {info}");
+                            }
+
+                            break;
 
                         case 0:
                             turnOff = true;
@@ -182,7 +201,7 @@ class Program
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Connection failed: {ex.Message}");
+                Console.WriteLine($"An error occured: {ex.Message}");
             }
         }
     }
@@ -203,5 +222,8 @@ class Program
 
     }
 }
+
+
+
 
 
