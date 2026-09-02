@@ -10,7 +10,7 @@ class Program
 
         List<Contact> contacts = new();
         bool turnOff = false;
-        string connString = "Host=localhost;Port=5432;Database=contacts_book;Username=postgres;Password=MegaLucario99!;";
+        string connString = "Host=localhost;Port=5432;Database=contacts_book;Username=postgres;Password=MegaLucario99;";
         using (var conn = new NpgsqlConnection(connString))        {
             try
             {
