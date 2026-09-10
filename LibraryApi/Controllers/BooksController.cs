@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using LibraryApi.Models;
-using Microsoft.AspNetCore.Components.Routing;
+using LibraryApi.Dtos;
 
 namespace LibraryApi.Controllers;
 
@@ -17,9 +17,16 @@ public class BooksController : ControllerBase
     };
     [HttpGet]
 
-    public ActionResult<List<Book>> GetBooks()
+    public ActionResult<List<Book>> GetBooks([FromQuery]int? year)
     {
-        return Ok(BookList);
+        if(year != null)
+        {
+            List<Book> filtered = BookList.Where(b => b.PublicationYear == year).ToList();
+            return Ok(filtered);
+        } else
+        {
+            return Ok(BookList);
+        }
     }
 
     [HttpGet("{id}")]
@@ -39,21 +46,28 @@ public class BooksController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<Book> CreateBook([FromBody] Book book)
+    public ActionResult<Book> CreateBook([FromBody] CreateBookDto bookDto)
     {
+        Book book = new Book
+        {
+            Id = BookList.Max(b=>b.Id) + 1,
+            Title = bookDto.Title,
+            PublicationYear = bookDto.PublicationYear
+        };
+        
         BookList.Add(book);
-        return CreatedAtAction(nameof(GetBook), new { id = book.Id }, book);
+        return CreatedAtAction( nameof(GetBook), new { id = book.Id}, book );
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateBook([FromRoute] int id, [FromBody] Book book)
+    public IActionResult UpdateBook([FromRoute] int id, [FromBody] UpdateBookDto bookDto)
     {
         Book? filtered = BookList.FirstOrDefault(bl => bl.Id == id);
 
         if (filtered != null)
         {
-            filtered.Title = book.Title;
-            filtered.PublicationYear = book.PublicationYear;
+            filtered.Title = bookDto.Title;
+            filtered.PublicationYear = bookDto.PublicationYear;
             return NoContent();
         }
         else

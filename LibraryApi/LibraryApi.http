@@ -4,9 +4,8 @@ POST {{LibraryApi_HostAddress}}/api/books
 Content-Type: application/json
 
 {
-    "id": 3,
     "title": "Dune",
-    "publicationYear": 1965
+    "publicationYear": 1210
 }
 
 ###
@@ -15,9 +14,8 @@ PUT {{LibraryApi_HostAddress}}/api/books/3
 Content-Type: application/json
 
 {
-    "id": 3,
     "title": "Duneh Messiah",
-    "publicationYear": 1969
+    "publicationYear": 69
 }
 
 ###
