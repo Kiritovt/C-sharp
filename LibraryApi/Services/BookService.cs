@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApi.Services;
 
-public class BookService
+public class BookService : IBookService
 {
     private List<Book> _bookList = new List<Book>()
     {
