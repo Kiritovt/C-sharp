@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{LibraryApi_HostAddress}}/api/books/3
+PUT {{LibraryApi_HostAddress}}/api/books/1
 Content-Type: application/json
 
 {
@@ -21,6 +21,6 @@ Content-Type: application/json
 ###
 
 
-DELETE  {{LibraryApi_HostAddress}}/api/books/3
+DELETE  {{LibraryApi_HostAddress}}/api/books/1
 
 ###
