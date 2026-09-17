@@ -27,10 +27,9 @@ public class BookRepository : IBookRepository
         _context.SaveChanges();
     }
 
-    public bool UpdateBook(Book book)
+    public int SaveChanges()
     {
-        _context.SaveChanges();
-        return true;
+        return _context.SaveChanges();
     }
 
     public bool DeleteBook(int id)

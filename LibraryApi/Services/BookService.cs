@@ -50,7 +50,8 @@ public class BookService : IBookService
         {
             book.Title = bookDto.Title;
             book.PublicationYear = bookDto.PublicationYear;
-            return _bookrepository.UpdateBook(book);
+            _bookrepository.SaveChanges();
+            return true;
         }
         else
         {
